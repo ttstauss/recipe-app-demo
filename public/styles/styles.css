@@ -1,0 +1,264 @@
+/* set defaults */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  color: #222;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  overflow-x: hidden;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: #396684;
+}
+
+/* container */
+.container {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 1.6rem;
+}
+
+/* header */
+.header, .header a {
+  background: #b00020;
+  color: white;
+  padding: 1.6rem 0;
+  text-decoration: none;
+}
+
+.header__title {
+  font-size: 3.2 rem;
+  margin-bottom: .4rem;
+}
+
+/* actions bar */
+.actions {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #dedfe0;
+  padding: .8rem;
+}
+
+.actions__container {
+  align-items: center;
+  display: flex;
+  max-width: 60rem;
+  margin: 0 auto;
+  min-height: 3rem;
+  padding: 0 1.6rem;
+}
+
+#search {
+  width: 100%;
+}
+
+/* commands bar */
+.commands {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #dedfe0;
+  padding: .8rem;
+}
+
+.commands__container {
+  align-items: center;
+  display: flex;
+  max-width: 60rem;
+  margin: 0 auto;
+  min-height: 3rem;
+  padding: 3rem 1.6rem;
+}
+
+.commands__container--spaced {
+  justify-content: space-between;
+}
+
+/* form inputs */
+.input {
+  border: 1px solid #dedfe0;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  font-weight: 300;
+  height: 3rem;
+  padding: .4rem .8rem;
+}
+
+.button {
+  background: #b00020;
+  border: none;
+  border-bottom: 2px solid #7b0016;
+  color: white;
+  font-size: 2rem;
+  font-weight: 300;
+  padding: .8rem;
+  transition: background .3s ease;
+}
+
+.button:hover {
+  background: #7b0016;
+}
+
+.button--secondary {
+  background: #888888;
+  border-bottom: 2px solid #717171;
+}
+
+.button--secondary:hover {
+  background: #6E6E6E;
+}
+
+/* recipe list */
+.list-item {
+  text-decoration: none;
+  color: #222;
+  background: #f7f7f7;
+  border: 1px solid #dedfe0;
+  margin: 1.6rem 0;
+  padding: 1.6rem;
+  display: block;
+  transition: background .3s ease;
+}
+
+.list-item:hover {
+  background: #eee;
+}
+
+.list-item__title {
+  font-size: 1.8rem;
+  margin-bottom: .4rem;
+}
+
+.list-item__subtitle {
+  color: #444;
+  font-size: 1.4rem;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.list-item__no-title {
+  color: #999;
+  font-size: 1.8rem;
+  margin-bottom: .4rem;
+}
+
+.list-item__no-subtitle {
+  color: #999;
+  font-size: 1.4rem;
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* recipe editor */
+.title-input {
+  border: 1px solid #dedfe0;
+  font-size: 2rem;
+  font-weight: 300;
+  display: block;
+  margin: 2.4rem 0;
+  padding: .8rem;
+  width: 100%;
+}
+
+.body-input {
+    border: 1px solid #dedfe0;
+    font-family: inherit;
+    font-size: 1.6rem;
+    font-weight: 300;
+    display: block;
+    margin: 2.4rem 0;
+    min-height: 15rem;
+    padding: .8rem;
+    width: 100%;
+}
+
+.ingredient-list-item {
+  text-decoration: none;
+  cursor: pointer;
+  background: #f7f7f7;
+  border: 1px solid #dedfe0;
+  margin: 1.6rem 0;
+  padding: 1rem 1.6rem;
+  display: block;
+  transition: background .3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+.ingredient-list-item:hover {
+background: #eee;
+}
+
+.ingredient-list-item__container {
+  display: flex;
+  font-size: 1.8rem;
+  font-weight: 300;
+  align-items: baseline;
+}
+
+.ingredient-list-item__container > *:first-child {
+  margin-right: .8rem;
+}
+
+#new-ingredient {
+  align-items: center;
+  display: flex;
+  margin: 0 auto 3rem;
+  min-height: 3rem;
+  justify-content: space-between;
+}
+
+#new-ingredient [name=newIngredient] {
+  border: 1px solid #dedfe0;
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 2.4rem 0;
+  padding: .8rem;
+  width: 49%;
+}
+
+#new-ingredient .button {
+  border-bottom: 2px solid #7b0016;
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 2.4rem 0;
+  padding: .8rem;
+  width: 49%;
+}
+
+.button--text {
+  background: none;
+  border: none;
+  color: #666;
+}
+
+.button--text:hover {
+  background: none;
+  color: #222;
+  text-decoration: underline;
+}
+
+#save-recipe, #remove-recipe {
+  width: 49%;
+}
+
+.empty-message {
+  background: #f7f7f7;
+  border: 1px solid #dedfe0;
+  margin: 1.6rem 0;
+  padding: 2rem 1.6rem;
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 300;
+}
