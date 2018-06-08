@@ -175,6 +175,6 @@ const generateIngredientOnHandSummaryDOM = (notOnHandIngredients) => {
 }
 
 // generate last edited message
-const generateLastEdited = timestamp => `Last edited ${moment(timestamp).fromNow()}.`
+const generateLastEdited = timestamp => `Last edited ${moment(timestamp).fromNow()}`
 
 export { renderRecipes, initializeRecipePage, renderIngredients, generateLastEdited }
