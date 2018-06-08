@@ -78,6 +78,15 @@ a {
     width: 49%;
 }
 
+.home-link {
+  color: #b00020;
+  text-decoration: none;
+}
+
+.home-link:hover {
+  text-decoration: underline;
+}
+
 /* commands bar */
 .commands {
   background-color: #f7f7f7;
