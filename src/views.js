@@ -75,7 +75,6 @@ const renderIngredients = (recipeId) => {
   const ingredientsEl = document.querySelector('#ingredients')
   const recipe = getRecipes().find(recipe => recipe.id === recipeId)
   const { hideOnHand } = getIngredientsFilter()
-  console.log('hideOnHand', hideOnHand)
   const filteredIngredients = recipe.ingredients.filter(ingredient => {
     return !hideOnHand || !ingredient.onHand
   })
