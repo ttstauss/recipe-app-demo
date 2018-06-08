@@ -10,7 +10,8 @@ const createIngredient = (text) => {
   return {
     id,
     createdAt: timestamp,
-    text
+    text,
+    onHand: false
   }
 }
 
@@ -19,6 +20,7 @@ const removeIngredient = (recipe, id) => {
   const ingredientIndex = recipe.ingredients.findIndex(recipe => recipe.id === id)
   if (ingredientIndex > -1) {
     recipe.ingredients.splice(ingredientIndex, 1)
+    recipe.updatedAt = moment().valueOf()
     saveRecipes()
   }
 }
@@ -29,6 +31,7 @@ const toggleIngredient = (recipe, id) => {
 
   if (ingredient) {
     ingredient.onHand = !ingredient.onHand
+    recipe.updatedAt = moment().valueOf()
     saveRecipes()
   }
 }

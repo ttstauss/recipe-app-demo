@@ -1,12 +1,14 @@
-import { getRecipes } from './recipes'
-import { getFilters } from './filters'
+import { getRecipes, sortRecipes } from './recipes'
+import { getFilters, getIngredientsFilter } from './filters'
 import { removeIngredient, toggleIngredient } from './ingredients'
+import moment from 'moment'
 
 // render application recipes
 const renderRecipes = () => {
   const recipesEl = document.querySelector('#recipes')
-  const { searchText } = getFilters()
-  const filteredRecipes = getRecipes().filter(recipe => recipe.title.toLowerCase().includes(searchText.toLowerCase()))
+  const { searchText, sortBy } = getFilters()
+  const recipes = sortRecipes(sortBy)
+  const filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(searchText.toLowerCase()))
 
   recipesEl.innerHTML = ''
 
@@ -51,6 +53,7 @@ const generateRecipeDOM = ({ id, title, instructions, ingredients }) => {
 // initialize recipe page
 const initializeRecipePage = (recipeId) => {
   const pageTitleEl = document.querySelector('title')
+  const dateEl = document.querySelector('#last-edited')
   const titleEl = document.querySelector('#recipe-title')
   const instructionsEl = document.querySelector('#recipe-body')
   const ingredientsEl = document.querySelector('#ingredients')
@@ -61,6 +64,7 @@ const initializeRecipePage = (recipeId) => {
   }
 
   pageTitleEl.textContent = recipe.title
+  dateEl.textContent = generateLastEdited(recipe.updatedAt)
   titleEl.value = recipe.title
   instructionsEl.value = recipe.instructions
   renderIngredients(recipeId, ingredientsEl)
@@ -70,10 +74,21 @@ const initializeRecipePage = (recipeId) => {
 const renderIngredients = (recipeId) => {
   const ingredientsEl = document.querySelector('#ingredients')
   const recipe = getRecipes().find(recipe => recipe.id === recipeId)
-  ingredientsEl.innerHTML = ''
+  const { hideOnHand } = getIngredientsFilter()
+  console.log('hideOnHand', hideOnHand)
+  const filteredIngredients = recipe.ingredients.filter(ingredient => {
+    return !hideOnHand || !ingredient.onHand
+  })
+  
+  const notOnHandIngredients = recipe.ingredients.filter(ingredient => {
+    return ingredient.onHand
+  })
 
-  if (recipe.ingredients.length > 0) {
-    recipe.ingredients.forEach(ingredient => {
+  ingredientsEl.innerHTML = ''
+  ingredientsEl.appendChild(generateIngredientOnHandSummaryDOM(notOnHandIngredients))
+
+  if (filteredIngredients.length > 0) {
+    filteredIngredients.forEach(ingredient => {
       ingredientsEl.appendChild(generateIngredientDOM(recipe, ingredient))
     })
   } else {
@@ -86,6 +101,7 @@ const renderIngredients = (recipeId) => {
 
 // generate DOM structure for an ingredient
 const generateIngredientDOM = (recipe, { id, text, onHand }) => {
+  const dateEl = document.querySelector('#last-edited')
   const ingredientEl = document.createElement('label')
   const containerEl = document.createElement('div')
   const checkboxEl = document.createElement('input')
@@ -97,6 +113,7 @@ const generateIngredientDOM = (recipe, { id, text, onHand }) => {
   checkboxEl.checked = onHand
   checkboxEl.addEventListener('change', () => {
     toggleIngredient(recipe, id)
+    dateEl.textContent = generateLastEdited(recipe.updatedAt)
     renderIngredients(recipe.id)
   })
   containerEl.appendChild(checkboxEl)
@@ -118,7 +135,8 @@ const generateIngredientDOM = (recipe, { id, text, onHand }) => {
 
   buttonEl.addEventListener('click', e => {
     removeIngredient(recipe, id)
-    renderIngredients(recipe.id)    
+    dateEl.textContent = generateLastEdited(recipe.updatedAt)
+    renderIngredients(recipe.id)
   })
 
   return ingredientEl
@@ -147,4 +165,16 @@ const generateSummaryDOM = (ingredients) => {
   return summaryEl
 }
 
-export { renderRecipes, initializeRecipePage, renderIngredients }
+// generate DOM structure for ingredient on hand summary
+const generateIngredientOnHandSummaryDOM = (notOnHandIngredients) => {
+  const onHandSummaryEl = document.createElement('p')
+  const plural = notOnHandIngredients.length === 1 ? '' : 's'
+  onHandSummaryEl.classList.add('list-title')
+  onHandSummaryEl.textContent = `You have ${notOnHandIngredients.length} ingredient${plural} on hand`
+  return onHandSummaryEl
+}
+
+// generate last edited message
+const generateLastEdited = timestamp => `Last edited ${moment(timestamp).fromNow()}.`
+
+export { renderRecipes, initializeRecipePage, renderIngredients, generateLastEdited }

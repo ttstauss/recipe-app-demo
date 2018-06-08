@@ -1,17 +1,36 @@
-// set initial filters array
+// set initial recipe filters
 const filters = {
-  searchText: ''
+  searchText: '',
+  sortBy: 'byEdited'
 }
 
-// expose filters from module
+// expose recipe filters from module
 const getFilters = () => filters
 
-// set filter search text
-const setFilters = ({ searchText }) => {
-  if(typeof searchText === 'string') {
+// set recipe filter search text and sort by
+const setFilters = ({ searchText, sortBy }) => {
+  if (typeof searchText === 'string') {
     filters.searchText = searchText
+  }
+  if (typeof sortBy === 'string') {
+    filters.sortBy = sortBy
   }
   return filters
 }
 
-export { getFilters, setFilters }
+// set initial ingredients filter
+const ingredientFilter = {
+  hideOnHand: false
+}
+
+// expose ingredients filter from module
+const getIngredientsFilter = () => ingredientFilter
+
+// set ingredients filter hide completed
+const setIngredientsFilter = ({ hideOnHand }) => {
+  if (typeof hideOnHand === 'boolean') {
+    ingredientFilter.hideOnHand = hideOnHand
+  }
+}
+
+export { getFilters, setFilters, getIngredientsFilter, setIngredientsFilter }

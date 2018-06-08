@@ -18,6 +18,13 @@ document.querySelector('#search').addEventListener('input', e => {
   renderRecipes()
 })
 
+document.querySelector('#filter-by').addEventListener('change', e => {
+  setFilters({
+    sortBy: e.target.value
+  })
+  renderRecipes()
+})
+
 window.addEventListener('storage', e => {
   if(e.key === 'recipes') {
     loadRecipes()

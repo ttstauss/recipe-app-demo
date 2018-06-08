@@ -47,6 +47,26 @@ const removeRecipe = (id) => {
   }
 }
 
+const sortRecipes = (sortBy) => {
+  if (sortBy === 'byEdited') {
+    return recipes.sort((a, b) => b.updatedAt - a.updatedAt)
+  } else if (sortBy === 'byCreated') {
+    return recipes.sort((a, b) => a.updatedAt - b.updatedAt)
+  } else if (sortBy === 'alphabetical') {
+    return recipes.sort((a, b) => {
+      if (a.title.toLowerCase() < b.title.toLowerCase()) {
+        return -1
+      } else if ( a.title.toLowerCase() > b.title.toLowerCase()) {
+        return 1
+      } else {
+        return 0
+      }
+    })
+  } else {
+    return recipes
+  }
+}
+
 // update recipe
 const updateRecipe = (id, { title, instructions }, ingredient) => {
   const recipe = recipes.find(recipe => recipe.id === id)
@@ -66,6 +86,7 @@ const updateRecipe = (id, { title, instructions }, ingredient) => {
     recipe.updatedAt = moment().valueOf()
   }
   saveRecipes()
+  return recipe
 }
 
 // expose recipes from module
@@ -73,4 +94,4 @@ const getRecipes = () => recipes
 
 loadRecipes()
 
-export { loadRecipes, getRecipes, createRecipe, removeRecipe, updateRecipe, saveRecipes }
+export { loadRecipes, getRecipes, createRecipe, sortRecipes, removeRecipe, updateRecipe, saveRecipes }

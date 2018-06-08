@@ -18,8 +18,9 @@
     </div>
   </header>
   <div class="actions">
-    <div class="actions__container">
+    <div class="actions__container actions__container--spaced">
       <a href="/">Home</a>
+      <span id="last-edited"></span>
     </div>
   </div>
   <div class="container">
@@ -27,7 +28,12 @@
     <textarea id="recipe-body" class="body-input" placeholder="Enter recipe instructions"></textarea>
   </div>
   <div class="container">
-    <h2>Ingredients</h2>
+    <div class="actions__container actions__container--spaced">
+      <h2>Ingredients</h2>
+      <label class="checkbox">
+        <input id="hide-on-hand" type="checkbox">Hide on Hand
+      </label>
+    </div>
     <div id="ingredients"></div>
     <form id="new-ingredient">
       <input type="text" name="newIngredient" placeholder="Enter ingredient">
