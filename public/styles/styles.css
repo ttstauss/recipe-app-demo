@@ -312,6 +312,11 @@ background: #eee;
 }
 
 /* find new recipes page */
+#clear {
+  margin: 0 1rem;
+  padding: 0 1rem;
+}
+
 #edamam-badge img {
   width: 100%;
   height: auto;

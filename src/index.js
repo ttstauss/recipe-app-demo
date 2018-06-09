@@ -12,6 +12,7 @@ document.querySelector('#create-recipe').addEventListener('click', () => {
 })
 
 document.querySelector('#find-recipe').addEventListener('click', () => {
+  localStorage.removeItem('found-recipes')
   location.assign('find.html')
 })
 

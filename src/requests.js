@@ -6,7 +6,7 @@ const getRecipesRequest = () => {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(data.hits)
-    }, 1000);
+    }, 200);
   })
   return promise
 }

@@ -16,12 +16,14 @@ const renderFoundRecipes = () => {
     const foundRecipe = JSON.parse(localStorage.getItem('found-recipes'))[location.hash.substring(1)].recipe
     generateFoundRecipeDOM(foundRecipe)
   } else {
+    foundRecipes = JSON.parse(localStorage.getItem('found-recipes'))
+
     const recipesEl = document.querySelector('#recipes')
     document.querySelector('.commands').classList.add('hide')
 
     recipesEl.innerHTML = ''
 
-    if (foundRecipes.length > 0) {
+    if (foundRecipes !== null && foundRecipes.length > 0) {
       foundRecipes.forEach((recipe, index) => {
         const recipeEl = generateFoundRecipesDOM(recipe, index)
         recipesEl.appendChild(recipeEl)
@@ -32,8 +34,7 @@ const renderFoundRecipes = () => {
       startSearch.classList.add('empty-message')
       recipesEl.appendChild(startSearch)
     }
-  }
-  
+  }  
 }
 
 const generateFoundRecipesDOM = ({ recipe }, index) => {
@@ -116,10 +117,14 @@ renderFoundRecipes()
 
 document.querySelector('#find').addEventListener('input', debounce(async (e) => {
   foundRecipes = await getRecipesRequest(e.target.value)
-  console.log(foundRecipes)
   saveFoundRecipes()  
   renderFoundRecipes()
-}, 1000))
+}, 800))
+
+document.querySelector('#clear').addEventListener('click', () => {
+  localStorage.removeItem('found-recipes')
+  renderFoundRecipes()
+})
 
 document.querySelector('#back-to-search').addEventListener('click', () => {
   location.assign('find.html')
