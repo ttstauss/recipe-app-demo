@@ -5,7 +5,8 @@ module.exports = (env, argv) => {
   return {
     entry: {
       index: ['babel-polyfill', './src/index.js'],
-      edit: ['babel-polyfill', './src/edit.js']
+      edit: ['babel-polyfill', './src/edit.js'],
+      find: ['babel-polyfill', './src/find.js']
     },
     output: {
       path: path.resolve(__dirname, 'public/scripts'),

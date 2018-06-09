@@ -6,9 +6,13 @@ import { setFilters } from './filters'
 renderRecipes()
 
 // set up event listeners
-document.querySelector('#create-recipe').addEventListener('click', e => {
+document.querySelector('#create-recipe').addEventListener('click', () => {
   const id = createRecipe()
-  location.assign(`/recipe.html#${id}`)
+  location.assign(`recipe.html#${id}`)
+})
+
+document.querySelector('#find-recipe').addEventListener('click', () => {
+  location.assign('find.html')
 })
 
 document.querySelector('#search').addEventListener('input', e => {

@@ -93,7 +93,7 @@ const renderIngredients = (recipeId) => {
   } else {
     const messageEl = document.createElement('p')
     messageEl.textContent = 'No ingredients to show'
-    messageEl.classList.add('empty-message', 'animated', 'zoomIn')
+    messageEl.classList.add('empty-message')
     ingredientsEl.appendChild(messageEl)
   }
 }

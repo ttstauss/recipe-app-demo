@@ -78,6 +78,10 @@ a {
     width: 49%;
 }
 
+#find {
+  width: 100%;
+}
+
 .home-link {
   color: #b00020;
   text-decoration: none;
@@ -152,6 +156,10 @@ margin-right: .4rem;
 
 .button--secondary:hover {
   background: #6E6E6E;
+}
+
+#create-recipe, #find-recipe {
+  width: 49%;
 }
 
 /* recipe list */
@@ -301,4 +309,47 @@ background: #eee;
   display: block;
   font-size: 1.8rem;
   font-weight: 300;
+}
+
+/* find new recipes page */
+#edamam-badge img {
+  width: 100%;
+  height: auto;
+}
+
+#recipes h4 {
+  padding: 2rem 0 0;
+}
+
+#recipes a {
+  cursor: pointer;
+}
+
+.recipe__title {
+  padding: 3rem 0;
+}
+
+.hide {
+  display: none;
+}
+
+.attribution {
+  padding-bottom: 1rem;
+}
+
+.attribution a {
+  color: #b00020;
+  text-decoration: none;
+}
+
+.attribution a:hover {
+  text-decoration: underline;
+}
+
+#find-page .ingredient-list-item {
+  cursor: default;
+}
+
+#back-to-search {
+  width: 49%;
 }

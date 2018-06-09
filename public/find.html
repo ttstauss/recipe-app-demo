@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,10 @@
   <title>Recipe App</title>
   <link rel="icon" href="/images/favicon.png">
   <link rel="stylesheet" href="/styles/styles.css">
+  <script src="https://developer.edamam.com/attribution/badge.js" defer></script>
 </head>
-<body>
+
+<body id="find-page">
   <header class="header">
     <div class="container">
       <a href="/index.html">
@@ -20,23 +23,19 @@
   </header>
   <div class="actions">
     <div class="actions__container actions__container--spaced">
-      <input id="search" class="input" type="search" placeholder="Search Recipes">
-      <select id="filter-by" class="dropdown">
-        <option value="byEdited">Sort by Last Edited</option>
-        <option value="byCreated">Sort by Created</option>
-        <option value="alphabetical">Sort Alphabetically</option>
-      </select>
+      <input id="find" class="input" type="search" placeholder="Find New Recipes">
+      <div id="edamam-badge" data-color="transparent"></div>
     </div>
-  </div>
-  <div class="container">
+  </div><div class="container">
     <div id="recipes"></div>
   </div>
-  <div class="commands">
+  <div class="commands hide">
     <div class="commands__container commands__container--spaced">
-      <button id="create-recipe" class="button">Add Recipe</button>
-      <button id="find-recipe" class="button button--secondary">Find New Recipes</button>
+      <button id="save-recipe" class="button">Save Recipe</button>
+      <button id="back-to-search" class="button button--secondary">Back to Search</button>
     </div>
   </div>
-  <script src="/scripts/index-bundle.js"></script>
+  <script src="/scripts/find-bundle.js"></script>
 </body>
+
 </html>

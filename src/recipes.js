@@ -68,7 +68,7 @@ const sortRecipes = (sortBy) => {
 }
 
 // update recipe
-const updateRecipe = (id, { title, instructions }, ingredient) => {
+const updateRecipe = (id, { title, instructions }, ingredient, ingredientsArray) => {
   const recipe = recipes.find(recipe => recipe.id === id)
   if (!recipe) {
     return
@@ -83,6 +83,10 @@ const updateRecipe = (id, { title, instructions }, ingredient) => {
   }
   if (typeof ingredient === 'object') {
     recipe.ingredients.push(ingredient)
+    recipe.updatedAt = moment().valueOf()
+  }
+  if (Array.isArray(ingredientsArray)) {
+    recipe.ingredients = ingredientsArray
     recipe.updatedAt = moment().valueOf()
   }
   saveRecipes()

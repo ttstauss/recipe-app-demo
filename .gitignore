@@ -1,2 +1,7 @@
 node_modules/
 CNAME
+localhost-cert.pem
+localhost-csr.pem
+localhost-key.pem
+server/
+dev.txt
