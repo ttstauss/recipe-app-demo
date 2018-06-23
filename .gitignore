@@ -1,6 +1,5 @@
 node_modules/
 public/scripts/
-server/
 CNAME
 localhost-cert.pem
 localhost-csr.pem
