@@ -5,10 +5,13 @@ const fs = require('fs')
 const path = require('path')
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+console.log(process.env.NODE_ENV)
 
 const publicPath = path.join(__dirname, '../public')
 
-let options
+const app = express()
+
+let options, port, server
 if (process.env.NODE_ENV === 'development') {
   options = {
     key: fs.readFileSync('./localhost-key.pem'),
@@ -16,20 +19,19 @@ if (process.env.NODE_ENV === 'development') {
     requestCert: false,
     rejectUnauthorized: false
   }
+  port = 443
+  server = https.createServer(options, app)
 } else {
   options = {}
+  port = process.env.PORT || 3000
+  server = http.createServer(app)
 }
-
-const app = express()
-const port = process.env.PORT || 443
-const server = https.createServer(options, app)
 
 app.use(express.static(publicPath))
 
 app.get('/', (req, res) => {
   res.sendFile(`${publicPath}/index.html`)
 })
-
 
 server.listen(port, () => {
   console.log(`Server listening on port ${server.address().port}`)
