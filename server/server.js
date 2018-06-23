@@ -11,9 +11,9 @@ const publicPath = path.join(__dirname, '../public')
 
 const app = express()
 
-let options, port, server
+let port, server
 if (process.env.NODE_ENV === 'development') {
-  options = {
+  const options = {
     key: fs.readFileSync('./localhost-key.pem'),
     cert: fs.readFileSync('./localhost-cert.pem'),
     requestCert: false,
@@ -22,7 +22,6 @@ if (process.env.NODE_ENV === 'development') {
   port = 443
   server = https.createServer(options, app)
 } else {
-  options = {}
   port = process.env.PORT || 3000
   server = http.createServer(app)
 }
