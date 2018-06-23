@@ -252,10 +252,15 @@ background: #eee;
   display: flex;
   font-size: 1.8rem;
   font-weight: 300;
-  align-items: baseline;
+  align-items: center;
 }
 
-.ingredient-list-item__container > *:first-child {
+/* .ingredient-list-item__container > *:first-child {
+  margin-right: .8rem;
+} */
+
+.checkbox-container {
+  min-width: 10px;
   margin-right: .8rem;
 }
 

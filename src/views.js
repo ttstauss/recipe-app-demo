@@ -104,6 +104,7 @@ const generateIngredientDOM = (recipe, { id, text, onHand }) => {
   const ingredientEl = document.createElement('label')
   const containerEl = document.createElement('div')
   const checkboxEl = document.createElement('input')
+  const checkboxContainerEl = document.createElement('span')
   const textEl = document.createElement('span')
   const buttonEl = document.createElement('button')
 
@@ -115,7 +116,9 @@ const generateIngredientDOM = (recipe, { id, text, onHand }) => {
     dateEl.textContent = generateLastEdited(recipe.updatedAt)
     renderIngredients(recipe.id)
   })
-  containerEl.appendChild(checkboxEl)
+  checkboxContainerEl.classList.add('checkbox-container')
+  checkboxContainerEl.appendChild(checkboxEl)
+  containerEl.appendChild(checkboxContainerEl)
 
   // setup ingredient text
   textEl.textContent = text
