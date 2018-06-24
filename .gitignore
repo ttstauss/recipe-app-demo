@@ -1,7 +1,7 @@
 node_modules/
 public/scripts/
+.env.development
 CNAME
 localhost-cert.pem
 localhost-csr.pem
 localhost-key.pem
-dev.txt
